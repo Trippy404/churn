@@ -1,98 +1,49 @@
-project: Churn Prediction Platform
+readme: |
+  # Churn Prediction Platform
 
-description: |
-  A complete Churn Prediction Web App built using FastAPI (backend) and HTML/CSS/JS (frontend).
+  A complete **Churn Prediction Web App** built using **FastAPI** (backend) and **HTML/CSS/JS** (frontend).  
   Users can upload a CSV file and get churn prediction along with evaluation metrics.
 
-structure: |
-  churn_app/
-  │
-  ├── app/
-  │   ├── main.py
-  │   ├── api/
-  │   │   └── routes.py
-  │   ├── core/
-  │   │   ├── config.py
-  │   │   └── logger.py
-  │   ├── ml/
-  │   │   ├── base.py
-  │   │   ├── data_loader.py
-  │   │   ├── preprocessor.py
-  │   │   ├── feature_selector.py
-  │   │   ├── models.py
-  │   │   ├── evaluator.py
-  │   │   └── pipeline.py
-  │   ├── schemas/
-  │   │   └── request.py
-  │   └── utils/
-  │       └── validators.py
-  │
-  ├── frontend/
-  │   ├── static/
-  │   │   ├── style.css
-  │   │   └── script.js
-  │   └── templates/
-  │       └── index.html
-  │
-  ├── requirements.txt
-  └── README.md
+  ---
 
-features:
-  - Upload CSV file from frontend
-  - Data cleaning, scaling, and feature engineering
-  - Feature selection & model prediction
-  - Multiple ML algorithms support
-  - Clean modular structure using OOP
 
-installation:
-  - step: Create virtual environment
-    commands:
-      - conda create -n churn_env python=3.11
-      - conda activate churn_env
+---
 
-  - step: Install dependencies
-    commands:
-      - pip install -r requirements.txt
+## ✅ Features
 
-run_app:
-  command: python -m uvicorn app.main:app --reload
+- Upload CSV file from frontend  
+- Data cleaning, scaling, and feature engineering  
+- Feature selection & model prediction  
+- Multiple ML algorithms support  
+- Clean modular structure using OOP
 
-open_browser:
-  frontend: http://127.0.0.1:8000
-  docs: http://127.0.0.1:8000/docs
+---
 
-frontend_explanation:
-  templates: frontend/templates/index.html
-  static_css: frontend/static/style.css
-  static_js: frontend/static/script.js
+## 🛠️ Installation
 
-workflow:
-  - User uploads CSV from frontend
-  - Frontend sends file to backend API
-  - Backend pipeline processes the data
-  - Model predicts churn
-  - Result + metrics returned to frontend
+###  Create virtual environment
+```bash
+conda create -n churn_env python=3.11
+conda activate churn_env
+```
+### API Example
 
-api_example:
-  endpoint: POST /predict
-  request_example:
-    algo: random_forest
-    file: customer_data.csv
-  response_example:
-    accuracy: 1
-    precision: 0.84
-    recall: 0.81
-    f1_score: 0.82
-    predictions: [0, 1, 0, 0, 1]
+Endpoint: POST /predict
 
-notes: |
-  Ensure all model files are saved inside app/ml/
-  Update pipeline logic in app/ml/pipeline.py
-  Mount frontend correctly in FastAPI:
+Request Example
+```bash
+{
+  "algo": "random_forest",
+  "file": "customer_data.csv"
+}
+{
+  "accuracy": 0.89,
+  "precision": 0.84,
+  "recall": 0.81,
+  "f1_score": 0.82,
+  "predictions": [0, 1, 0, 0, 1]
+}
 
-  from fastapi.staticfiles import StaticFiles
-  from fastapi.templating import Jinja2Templates
 
-  app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-  templates = Jinja2Templates(directory="frontend/templates")
+
 
